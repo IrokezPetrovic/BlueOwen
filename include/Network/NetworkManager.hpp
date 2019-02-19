@@ -2,15 +2,24 @@
 #define NETWORKING_HPP
 
 
+#define BLE_NRF51       1
+#define WIFI_ESP8266    2
 
-//NRF51922
-#if NETWORK_MODULE == BLE_NRF51
-//#include "NRF51/NRF51NetworkModule.hpp"
-//#define NetworkModule Nrf51NetworkModule
-#endif
 
-//ESP8266
-#if NEWORK_MODULE == ESP8266
-#endif
+#if NETWORK_MODULE==BLE_NRF51
 
-#endif // NETWORKING_HPP
+#include "NRF51/NRF51NetworkModule.hpp"
+#define NetworkModule Nrf51NetworkModule
+
+#elif NEWORK_MODULE==WIFI_ESP8266
+
+#include "ESP8266/ESP8266NetworkModule.hpp"
+#define NetworkModule Esp8266NetworkModule
+
+#else
+#error  Сетевой модуль не определен!
+#include "INetworkModule.hpp"
+#define NetworkModule INetworkModule
+#endif 
+
+#endif// NETWORKING_HPP

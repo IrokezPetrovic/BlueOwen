@@ -1,5 +1,4 @@
-//#define NETWORK_INTERFACE BLE_NRF51
-//#define NETWORK_INTERFACE ESP8266
+#define NETWORK_MODULE BLE_NRF51
 
 #include <Arduino.h>
 #include <TaskScheduler.h>
@@ -13,11 +12,10 @@ Max6675Thermistor thermistor;
 Scheduler scheduler;
 TiracPid pid;
 
+
 Owen owen(&thermistor, &pid);
 OwenController controller(&owen);
 NetworkModule networkModule(&controller);
-
-
 void setup()
 {
   
